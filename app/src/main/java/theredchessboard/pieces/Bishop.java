@@ -4,8 +4,8 @@ import theredchessboard.Tile;
 
 public class Bishop extends AbstractPiece { 
     
-    public Bishop(Board board, int x, int y) {
-        super(board, x, y);
+    public Bishop(Board board, int x, int y, String theme) {
+        super(board, x, y, theme);
     }
 
     @Override
@@ -13,28 +13,52 @@ public class Bishop extends AbstractPiece {
         // TODO
         Tile[][] map = this.board.getBoard();
         if (!map[x][y].isEmpty()) return false;
-        if (x == this.x){
-            return false;
-        }
-        if (y == this.y){
-            return false;
-        }
-        if (x < this.x){
+        if (x == this.x){return false;}
+        if (y == this.y){return false;}
+        if (Math.abs(x-this.x) == (Math.abs(y-this.y))){
             if (y < this.y){
-                //northwest
+                if (x > this.x){
+                    //northeast
+                    for (int i = this.x; i < x; i--){
+                        for (int j = this.y; j < y; j--){
+                            if (map[x][y].isEmpty()) return true;
+                        }
+                    }
+                }
+                if (x < this.x){
+                    //northwest
+                    for (int i = this.x; i < x; i++){
+                        for (int j = this.y; j < y; j--){
+                            if (map[x][y].isEmpty()) return true;
+                        }
+                    }
+                }
             }
             if (y > this.y){
-                //northeast
-            }
-        }
-        if (x > this.x){
-            if (y < this.y){
-                //southwest
-            }
-            if (y > this.y){
-                //southeast
-            }
-        }
+                if (x > this.x){
+                    //southeast
+                    for (int i = this.x; i < x; i++){
+                        for (int j = this.y; j < y; j++){
+                            if (map[x][y].isEmpty()) return true;
+                        }
+                    }
+                }
+                if (x < this.x){
+                    //southwest
+                    for (int i = this.x; i < x; i--){
+                        for (int j = this.y; j < y; j--){
+                            if (map[x][y].isEmpty()) return true;
+                        }
+                    }
+                }
+            }  
+            } 
+            else return false;
         return false;
+    }
+
+    @Override
+    public String pieceName() {
+        return "bishop";
     }
 }

@@ -7,18 +7,20 @@ import java.awt.Color;
 
 public class Tile extends ClickableBackgroundImage {
     private AbstractPiece piece = null;
+    private static final String EMPTY_IMAGE = "misc/empty_image.png";
 
-    public Tile(int x, int y, int w, int h, String theme) {
-        super(x, y, w, h, determineColor(x, y));
+    public Tile(int x, int y, int tileX, int tileY, int w, int h) {
+        super(x, y, w, h, determineColor(tileX, tileY));
     }
 
     public void setPiece(AbstractPiece piece) {
         this.piece = piece;
-        setImage(this.piece.getImageName());
+        String name = (piece == null ? EMPTY_IMAGE : this.piece.getImageName());
+        setImage(name);
     }
 
     private static Color determineColor(int x, int y) {
-        return ((x+y) % 2) == 0 ? Color.lightGray : Color.WHITE;
+        return ((x+y) % 2) == 0 ? Color.lightGray : Color.white;
     }
 
     public boolean isEmpty() {

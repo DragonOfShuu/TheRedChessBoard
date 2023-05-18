@@ -519,6 +519,7 @@ public class JLComp extends JComponent {
             this.getParent().setBackground(c);
         }
         
+        @Override
         public void paint(Graphics g)  {
             g.setColor( getBackground() );
             g.fillRect(0, 0, getWidth()-1, getHeight()-1);

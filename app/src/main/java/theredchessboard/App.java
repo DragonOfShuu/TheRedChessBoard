@@ -6,6 +6,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().testExample());
+        // System.out.println(new App().testExample());
+        Board board = new Board(0, 0, "among_us");
     }
 }

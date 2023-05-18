@@ -4,8 +4,8 @@ import theredchessboard.Tile;
 
 public class Bishop extends AbstractPiece { 
     
-    public Bishop(Board board, int x, int y, String theme) {
-        super(board, x, y, theme);
+    public Bishop(Board board, int x, int y) {
+        super(board, x, y);
     }
 
     @Override

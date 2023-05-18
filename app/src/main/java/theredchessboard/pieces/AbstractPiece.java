@@ -2,23 +2,31 @@ package theredchessboard.pieces;
 import theredchessboard.Board;
 
 public abstract class AbstractPiece {
-    public boolean isFp;
+    protected boolean isFp;
     protected Board board;
     protected String theme;
 
     protected int x;
     protected int y;
 
-    public AbstractPiece(Board board, int x, int y, String theme) {
+    public AbstractPiece(Board board, int x, int y) {
         this.board = board;
-        this.theme = theme;
+        this.theme = board.getTheme();
         this.x = x;
         this.y = y;
     }
 
     public String getImageName() {
         String playerName = (isFp ? "first_player" : "second_player");
-        return "resources/themes/" + theme + playerName + this.pieceName();
+        return "themes/" + theme + "/" + playerName + "/" + this.pieceName() + ".png";
+    }
+
+    public void setFp(boolean isFp) {
+        this.isFp = isFp;
+    }
+
+    public boolean isFp() {
+        return isFp;
     }
 
     /**

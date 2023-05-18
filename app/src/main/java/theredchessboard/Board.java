@@ -1,5 +1,7 @@
 package theredchessboard;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 import theredchessboard.pieces.AbstractPiece;
@@ -13,6 +15,8 @@ import theredchessboard.pieces.Rook;
 public class Board extends JFrame {
     public int fpLeft;
     public int spLeft;
+
+    private int numOfPieces;
 
     private String theme;
 
@@ -30,20 +34,34 @@ public class Board extends JFrame {
         {'r', 'n', 'b', 'k', 'q', 'b', 'n', 'r'}
     };
 
-    public Board(int x, int y, int size, int padding, char[][] default_board, String theme) {
-        if (size != default_board.length) {
+    public Board(int count, int size, int padding, int numOfPieces, char[][] default_board, String theme) {
+        super("The Red Chessboard");
+        if (count != default_board.length) {
             throw new UnsupportedOperationException("The size of the default board must match the size");
         }
         this.default_board = default_board;
-        board = new Tile[size][size];
+        board = new Tile[count][count];
+        if (!(numOfPieces % 2 == 0)) {
+            throw new UnsupportedOperationException("The number of pieces must be divisible by two");
+        }
+        this.numOfPieces = numOfPieces;
         this.theme = theme;
 
-        createWindows(size, size, x, y, padding);
+        this.setLayout(null);
+        this.setBounds(0, 0, size, size);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        createWindows(size, size, count, count, padding);
         setBoard();
+
+        this.setPreferredSize(new Dimension(size+20, size+40));
+        this.pack();
+
+        this.setVisible(true);
     }
 
     public Board(int x, int y, String theme) {
-        this(x, y, 8, 5, default_default_board, theme);
+        this(8, 500, 5, 32, default_default_board, theme);
     }
 
     public Tile[][] getBoard() {
@@ -69,7 +87,7 @@ public class Board extends JFrame {
 
                 int locationX = previousPaddingCountX+previousWindowCountX;
 
-                Tile manipulatable = new Tile(locationX, locationY, width, height, theme);
+                Tile manipulatable = new Tile(locationX, locationY, x, y, width, height);
                 this.add(manipulatable);
                 board[y][x] = manipulatable;
             }
@@ -80,20 +98,33 @@ public class Board extends JFrame {
         char pieceAbbr = default_board[y][x];
 
         return switch (pieceAbbr) {
-            case 'r' -> new Rook(this, x, y, theme);
-            case 'n' -> new Knight(this, x, y, theme);
-            case 'b' -> new Bishop(this, x, y, theme);
-            case 'k' -> new King(this, x, y, theme);
-            case 'q' -> new Queen(this, x, y, theme);
-            case 'p' -> new Pawn(this, x, y, theme);
+            case 'r' -> new Rook(this, x, y);
+            case 'n' -> new Knight(this, x, y);
+            case 'b' -> new Bishop(this, x, y);
+            case 'k' -> new King(this, x, y);
+            case 'q' -> new Queen(this, x, y);
+            case 'p' -> new Pawn(this, x, y);
             default -> null;
         };
     }
 
     public void setBoard() {
+        System.out.println(board.length);
+        int count = 0;
         for (int row = 0; row < board.length; row++) {
             for (int column = 0; column < board.length; column++) {
-                board[row][column].setPiece( solvePiece(column, row) );
+                AbstractPiece newPiece = solvePiece(column, row);
+
+                if (newPiece == null) {
+                    board[row][column].setPiece( null );
+                    break;
+                }
+
+                count++;
+                if (count > (this.numOfPieces / 2)) {
+                    newPiece.setFp(true);
+                }
+                board[row][column].setPiece(newPiece);
             }
         }
     }

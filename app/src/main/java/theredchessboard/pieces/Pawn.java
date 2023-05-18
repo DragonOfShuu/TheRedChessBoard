@@ -1,15 +1,14 @@
 package theredchessboard.pieces;
 
 import theredchessboard.Board;
-
 import theredchessboard.Tile;
 
 public class Pawn extends AbstractPiece {
     private boolean hasPawnMoved = false;
     
 
-    public Pawn(Board board, int x, int y, String theme) {
-        super(board, x, y, theme);
+    public Pawn(Board board, int x, int y) {
+        super(board, x, y);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class Pawn extends AbstractPiece {
                     }
                     else return false;
                 }
-                if (hasPawnMoved){
+                else {
                     if (y == (this.y - 1)){
                         if (map[x][this.y-1].isEmpty()){
                             hasPawnMoved = true;
@@ -44,7 +43,6 @@ public class Pawn extends AbstractPiece {
                     }
                     else return false;
                 }
-                else return false;
             }
             if (!isFp){
                 if(!hasPawnMoved){
@@ -75,7 +73,13 @@ public class Pawn extends AbstractPiece {
                     }
                     else return false;
                 }
+                // I ADDED THIS CODE TO REMOVE 
+                // AN ERROR. YOU CAN DELETE IT
+                else return false;
             }
+            // I ADDED THIS CODE TO REMOVE 
+            // AN ERROR. YOU CAN DELETE IT
+            else return false;
         }
         else return false;
     }

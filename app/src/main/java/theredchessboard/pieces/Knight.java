@@ -11,7 +11,7 @@ public class Knight extends AbstractPiece {
     @Override
     public boolean pieceCanMove(int x, int y) {
         Tile[][] map = this.board.getBoard();
-        if (!map[x][y].isEmpty()) return false;
+        if (!map[y][x].isEmpty()) return false;
         if (Math.abs(this.x-x)==2 && Math.abs(this.y-y)==1) return true;
         if (Math.abs(this.x-x)==1 && Math.abs(this.y-y)==2) return true;
         else return false;

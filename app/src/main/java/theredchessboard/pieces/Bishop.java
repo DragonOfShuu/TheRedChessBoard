@@ -11,16 +11,17 @@ public class Bishop extends AbstractPiece {
     @Override
     public boolean pieceCanMove(int x, int y){
         Tile[][] map = this.board.getBoard();
-        if (!map[x][y].isEmpty()) return false;
+        if (!map[y][x].isEmpty()) return false;
         if (this.x == x && this.y == y) return false;
         if (x == this.x || y == this.y) return false;
+
         if (Math.abs(x-this.x) == (Math.abs(y-this.y))){
             if (y < this.y){
                 if (x > this.x){
                     //northeast
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;
@@ -29,7 +30,7 @@ public class Bishop extends AbstractPiece {
                     //northwest
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j--){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;
@@ -40,7 +41,7 @@ public class Bishop extends AbstractPiece {
                     //southeast
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j++){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;
@@ -49,7 +50,7 @@ public class Bishop extends AbstractPiece {
                     //southwest
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;

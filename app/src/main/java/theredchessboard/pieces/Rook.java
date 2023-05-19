@@ -13,13 +13,13 @@ public class Rook extends AbstractPiece {
         if (this.x == x && this.y == y) return false;
         if (Math.abs(this.x) == x){
             for (int i = this.x; i < x; i++){
-                 if (!map[x][i].isEmpty()) return false;
+                 if (!map[i][x].isEmpty()) return false;
             }
             return true;
         }
         if(Math.abs(this.y) == y){
             for (int i = this.y; i < y; i++) {
-                if (!map[i][y].isEmpty()) return false;
+                if (!map[y][i].isEmpty()) return false;
             }
             return true;
         }

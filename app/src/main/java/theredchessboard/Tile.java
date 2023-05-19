@@ -53,4 +53,12 @@ public class Tile extends ClickableBackgroundImage {
     public void mouseClicked(MouseEvent e) {
         game.tileClicked(x, y);
     }
+
+    public int getLocX() {
+        return x;
+    }
+
+    public int getLocY() {
+        return y;
+    }
 }

@@ -18,14 +18,14 @@ public class Pawn extends AbstractPiece {
             if (isFp){
                 if (!hasPawnMoved){
                     if (y == (this.y - 2)){
-                        if (map[x][this.y-2].isEmpty()){
+                        if (map[this.y-2][x].isEmpty()){
                             hasPawnMoved = true;
                             return true;
                         }
                         else return false;
                     }
                     if (y == (this.y - 1)){
-                        if (map[x][this.y-1].isEmpty()){
+                        if (map[this.y-1][x].isEmpty()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -35,7 +35,7 @@ public class Pawn extends AbstractPiece {
                 }
                 else {
                     if (y == (this.y - 1)){
-                        if (map[x][this.y-1].isEmpty()){
+                        if (map[this.y-1][x].isEmpty()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -47,14 +47,14 @@ public class Pawn extends AbstractPiece {
             if (!isFp){
                 if(!hasPawnMoved){
                     if (y == (this.y + 2)){
-                        if (map[x][this.y+2].isEmpty()){
+                        if (map[this.y+2][x].isEmpty()){
                             hasPawnMoved = true;
                             return true;
                         }
                         else return false;
                     }
                     if (y == (this.y + 1)){
-                        if (map[x][this.y+1].isEmpty()){
+                        if (map[this.y+1][x].isEmpty()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -65,7 +65,7 @@ public class Pawn extends AbstractPiece {
                 }
                 if(hasPawnMoved){
                     if (y == (this.y + 1)){
-                        if (map[x][this.y+1].isEmpty()){
+                        if (map[this.y+1][x].isEmpty()){
                             hasPawnMoved = true;
                             return true;
                         }

@@ -11,18 +11,18 @@ public class Queen extends AbstractPiece {
     @Override
     public boolean pieceCanMove(int x, int y) {
         Tile[][] map = this.board.getBoard();
-        if (!map[x][y].isEmpty()) return false;
+        if (!board.getTile(x, y).isEmpty()) return false;
         if (this.x == x && this.y == y) return false;
         //horizontal or vertical
         if (Math.abs(this.x) == x){
             for (int i = this.x; i < x; i++){
-                 if (!map[x][i].isEmpty()) return false;
+                 if (!map[i][x].isEmpty()) return false;
             }
             return true;
         }
         if(Math.abs(this.y) == y){
             for (int i = this.y; i < y; i++) {
-                if (!map[i][y].isEmpty()) return false;
+                if (!map[y][i].isEmpty()) return false;
             }
             return true;
         }
@@ -33,7 +33,7 @@ public class Queen extends AbstractPiece {
                     //northeast
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;
@@ -42,7 +42,7 @@ public class Queen extends AbstractPiece {
                     //northwest
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j--){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;
@@ -53,7 +53,7 @@ public class Queen extends AbstractPiece {
                     //southeast
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j++){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;
@@ -62,7 +62,7 @@ public class Queen extends AbstractPiece {
                     //southwest
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[x][y].isEmpty()) return false;
+                            if (!map[y][x].isEmpty()) return false;
                         }
                     }
                     return true;

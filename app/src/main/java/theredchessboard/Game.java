@@ -32,6 +32,7 @@ public class Game {
 
     public void movePiece(Tile moveTo) {
         moveTo.setPiece(selectedTile.getPiece());
+        moveTo.getPiece().setLocation(moveTo.getLocX(), moveTo.getLocY());
         selectedTile.setPiece(null);
         isFpTurn = !isFpTurn;
     }

@@ -12,11 +12,11 @@ public class King extends AbstractPiece {
         Tile[][] map = this.board.getBoard();
         if (this.x == x && this.y == y) return false;
         if(Math.abs(this.x-x)==1 || Math.abs(this.y-y)==1){
-            if (map[x][y].isEmpty()) return true;
+            if (map[y][x].isEmpty()) return true;
             else return false;
         }
         if(Math.abs(this.x-x)==1 && Math.abs(this.y-y)==1){
-            if (map[x][y].isEmpty()) return true;
+            if (map[y][x].isEmpty()) return true;
             else return false;
         }
         else{

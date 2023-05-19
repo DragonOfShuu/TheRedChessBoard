@@ -31,6 +31,11 @@ public abstract class AbstractPiece {
         return isFp;
     }
 
+    public void setLocation(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * Kills the current piece and
      * relays to Board. Assume that

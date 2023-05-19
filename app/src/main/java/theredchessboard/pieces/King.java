@@ -11,9 +11,10 @@ public class King extends AbstractPiece {
     public boolean pieceCanMove(int x, int y) {
         Tile[][] map = this.board.getBoard();
 
-        if (this.isFp == map[y][x].getPiece().isFp()) return false;
-        if (Math.abs(this.x-x)==1 && Math.abs(this.y-y)==1) return true;
-        if (Math.abs(this.x-x)==1 || Math.abs(this.y-y)==1) return true;
+        if (Math.abs(this.x-x)!=1 && Math.abs(this.y-y)!=1) return false;
+        if (Math.abs(this.x-x)!=1 || Math.abs(this.y-y)!=1) return false;
+        if (map[y][x].getPiece() == null) return true;
+        if (this.isFp != map[y][x].getPiece().isFp()) return true;
         else return false;
 
         // if (this.x == x && this.y == y) return false;

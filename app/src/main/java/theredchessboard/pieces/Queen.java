@@ -11,20 +11,19 @@ public class Queen extends AbstractPiece {
     @Override
     public boolean pieceCanMove(int x, int y) {
         Tile[][] map = this.board.getBoard();
-        if (!board.getTile(x, y).isEmpty()) return false;
         if (this.x == x && this.y == y) return false;
         //horizontal or vertical
         if (Math.abs(this.x) == x){
             for (int i = this.x; i < x; i++){
-                 if (!map[i][x].isEmpty()) return false;
+                if (this.isFp != map[y][x].getPiece().isFp()) return true;
             }
-            return true;
+            return false;
         }
         if(Math.abs(this.y) == y){
             for (int i = this.y; i < y; i++) {
-                if (!map[y][i].isEmpty()) return false;
+                if (this.isFp != map[y][x].getPiece().isFp()) return true;
             }
-            return true;
+            return false;
         }
         //diagonal
         if (Math.abs(x-this.x) == (Math.abs(y-this.y))){
@@ -33,19 +32,19 @@ public class Queen extends AbstractPiece {
                     //northeast
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
                 if (x < this.x){
                     //northwest
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j--){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
             }
             if (y > this.y){
@@ -53,19 +52,19 @@ public class Queen extends AbstractPiece {
                     //southeast
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j++){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
                 if (x < this.x){
                     //southwest
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
             }  
             } 

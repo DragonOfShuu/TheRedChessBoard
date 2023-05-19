@@ -18,14 +18,14 @@ public class Pawn extends AbstractPiece {
             if (isFp){
                 if (!hasPawnMoved){
                     if (y == (this.y - 2)){
-                        if (map[this.y-2][x].isEmpty()){
+                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
                         else return false;
                     }
                     if (y == (this.y - 1)){
-                        if (map[this.y-1][x].isEmpty()){
+                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -35,7 +35,7 @@ public class Pawn extends AbstractPiece {
                 }
                 else {
                     if (y == (this.y - 1)){
-                        if (map[this.y-1][x].isEmpty()){
+                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -47,14 +47,14 @@ public class Pawn extends AbstractPiece {
             if (!isFp){
                 if(!hasPawnMoved){
                     if (y == (this.y + 2)){
-                        if (map[this.y+2][x].isEmpty()){
+                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
                         else return false;
                     }
                     if (y == (this.y + 1)){
-                        if (map[this.y+1][x].isEmpty()){
+                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -65,7 +65,7 @@ public class Pawn extends AbstractPiece {
                 }
                 if(hasPawnMoved){
                     if (y == (this.y + 1)){
-                        if (map[this.y+1][x].isEmpty()){
+                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -73,12 +73,8 @@ public class Pawn extends AbstractPiece {
                     }
                     else return false;
                 }
-                // I ADDED THIS CODE TO REMOVE 
-                // AN ERROR. YOU CAN DELETE IT
                 else return false;
             }
-            // I ADDED THIS CODE TO REMOVE 
-            // AN ERROR. YOU CAN DELETE IT
             else return false;
         }
         else return false;

@@ -21,19 +21,19 @@ public class Bishop extends AbstractPiece {
                     //northeast
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
                 if (x < this.x){
                     //northwest
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j--){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
             }
             if (y > this.y){
@@ -41,19 +41,19 @@ public class Bishop extends AbstractPiece {
                     //southeast
                     for (int i = this.x; i < x; i++){
                         for (int j = this.y; j < y; j++){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
                 if (x < this.x){
                     //southwest
                     for (int i = this.x; i < x; i--){
                         for (int j = this.y; j < y; j--){
-                            if (!map[y][x].isEmpty()) return false;
+                            if (this.isFp != map[y][x].getPiece().isFp()) return true;
                         }
                     }
-                    return true;
+                    return false;
                 }
             }  
             } 

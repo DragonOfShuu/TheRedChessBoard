@@ -13,12 +13,10 @@ import theredchessboard.pieces.Queen;
 import theredchessboard.pieces.Rook;
 
 public class Board extends JFrame {
-    public int fpLeft;
-    public int spLeft;
-
     private int numOfPieces;
 
     private String theme;
+    private Game game;
 
     private Tile[][] board;
     private char[][] default_board;
@@ -34,7 +32,13 @@ public class Board extends JFrame {
         {'r', 'n', 'b', 'k', 'q', 'b', 'n', 'r'}
     };
 
-    public Board(int count, int size, int padding, int numOfPieces, char[][] default_board, String theme) {
+    public Board(int count, 
+                 int size, 
+                 int padding, 
+                 int numOfPieces, 
+                 char[][] default_board, 
+                 String theme,
+                 Game game) {
         super("The Red Chessboard");
         if (count != default_board.length) {
             throw new UnsupportedOperationException("The size of the default board must match the size");
@@ -46,6 +50,7 @@ public class Board extends JFrame {
         }
         this.numOfPieces = numOfPieces;
         this.theme = theme;
+        this.game = game;
 
         this.setLayout(null);
         this.setBounds(0, 0, size, size);
@@ -56,16 +61,22 @@ public class Board extends JFrame {
 
         this.setPreferredSize(new Dimension(size+20, size+40));
         this.pack();
+    }
 
+    public void start() {
         this.setVisible(true);
     }
 
-    public Board(int x, int y, String theme) {
-        this(8, 500, 5, 32, default_default_board, theme);
+    public Board(String theme, Game game) {
+        this(8, 500, 5, 32, default_default_board, theme, game);
     }
 
     public Tile[][] getBoard() {
         return board;
+    }
+
+    public int getNumOfPieces() {
+        return numOfPieces;
     }
 
     public void createWindows(int w, int h, int countX, int countY, int padding) {
@@ -87,7 +98,7 @@ public class Board extends JFrame {
 
                 int locationX = previousPaddingCountX+previousWindowCountX;
 
-                Tile manipulatable = new Tile(locationX, locationY, x, y, width, height);
+                Tile manipulatable = new Tile(locationX, locationY, x, y, width, height, game);
                 this.add(manipulatable);
                 board[y][x] = manipulatable;
             }
@@ -131,5 +142,9 @@ public class Board extends JFrame {
 
     public String getTheme() {
         return theme;
+    }
+
+    public Tile getTile(int x, int y) {
+        return board[y][x];
     }
 }

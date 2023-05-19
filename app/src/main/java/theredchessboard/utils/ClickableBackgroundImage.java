@@ -36,24 +36,23 @@ public class ClickableBackgroundImage extends JLComp.Rectangle implements MouseL
     public void setImage(String s)  {
         java.net.URL url = getClass().getResource(s);  
         if (url == null)   {
-                url = getClass().getResource("/"+s);
-                if (url == null)
-                    try {  
-                        content = ImageIO.read(new File(s));
-                    } catch(IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                else
-                content = getToolkit().getImage(url);
-                } else
-                content = getToolkit().getImage(url);
+            url = getClass().getResource("/"+s);
+            if (url == null)
+                try {  
+                    content = ImageIO.read(new File(s));
+                } catch(IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            else
+            content = getToolkit().getImage(url);
+            this.repaint();
+            } else
+            content = getToolkit().getImage(url);
+            this.repaint();
     }
     public void paint(Graphics g)  {
-        g.setColor( getBackground() );
-        g.fillRect(0, 0, getWidth()-1, getHeight()-1);
-        
+        super.paint(g);
         g.drawImage(content, 0, 0, getWidth(), getHeight(), this);
-        paintChildren(g);
     }
 
     public void mouseClicked(MouseEvent e){}

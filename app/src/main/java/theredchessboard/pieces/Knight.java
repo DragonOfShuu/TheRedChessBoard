@@ -1,6 +1,7 @@
 package theredchessboard.pieces;
 
 import theredchessboard.Board;
+import theredchessboard.Tile;
 
 public class Knight extends AbstractPiece {
     public Knight(Board board, int x, int y) {
@@ -9,8 +10,11 @@ public class Knight extends AbstractPiece {
 
     @Override
     public boolean pieceCanMove(int x, int y) {
-        // TODO Auto-generated method stub
-        return false;
+        Tile[][] map = this.board.getBoard();
+        if (!map[x][y].isEmpty()) return false;
+        if (Math.abs(this.x-x)==2 && Math.abs(this.y-y)==1) return true;
+        if (Math.abs(this.x-x)==1 && Math.abs(this.y-y)==2) return true;
+        else return false;
     }
 
     @Override

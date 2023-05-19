@@ -15,7 +15,8 @@ import theredchessboard.pieces.Rook;
 public class Board extends JFrame {
     private int numOfPieces;
 
-    private String theme;
+    private String theme1;
+    private String theme2;
     private Game game;
 
     private Tile[][] board;
@@ -37,7 +38,8 @@ public class Board extends JFrame {
                  int padding, 
                  int numOfPieces, 
                  char[][] default_board, 
-                 String theme,
+                 String theme1,
+                 String theme2,
                  Game game) {
         super("The Red Chessboard");
         if (count != default_board.length) {
@@ -49,7 +51,8 @@ public class Board extends JFrame {
             throw new UnsupportedOperationException("The number of pieces must be divisible by two");
         }
         this.numOfPieces = numOfPieces;
-        this.theme = theme;
+        this.theme1 = theme1;
+        this.theme2 = theme2;
         this.game = game;
 
         this.setLayout(null);
@@ -67,8 +70,8 @@ public class Board extends JFrame {
         this.setVisible(true);
     }
 
-    public Board(String theme, Game game) {
-        this(8, 500, 5, 32, default_default_board, theme, game);
+    public Board(String theme1, String theme2, Game game) {
+        this(8, 500, 5, 32, default_default_board, theme1, theme2, game);
     }
 
     public Tile[][] getBoard() {
@@ -140,8 +143,12 @@ public class Board extends JFrame {
         }
     }
 
-    public String getTheme() {
-        return theme;
+    public String getTheme1() {
+        return theme1;
+    }
+
+    public String getTheme2() {
+        return theme2;
     }
 
     public Tile getTile(int x, int y) {

@@ -19,11 +19,14 @@ public class DialogueBox extends JFrame implements ActionListener {
     private String playerOneSkin;
     private String playerTwoSkin;
     private JLabel themeQuestion;
+    private IChosenThemes callback;
     // arrays are used to allow a filepath and the theme name in one position in the arraylist
 
-    public DialogueBox(){
+    public DialogueBox(IChosenThemes callback){
         super("Choose Your Skin");
         int[] windowBounds = {700,700};
+
+        this.callback = callback;
 
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -51,7 +54,7 @@ public class DialogueBox extends JFrame implements ActionListener {
         // Text JLabel
 
 
-        String path = "../TheRedChessBoard/resources/themes";
+        String path = "app/src/main/resources/themes/";
         // path to the folder "themes"
 
 
@@ -149,14 +152,8 @@ public class DialogueBox extends JFrame implements ActionListener {
             // CHANGE THIS TO WHATEVER YOU NEED IT TO BE
             // idk if you also want to have the window close or what 
             // I haven't looked into that but it's up to you so I'll just let you do it
+            this.setVisible(false);
+            callback.startBoard(playerOneSkin, playerTwoSkin);
         }
     }
-
-
-
-
-    public static void main(String[] args) {
-        DialogueBox box = new DialogueBox();
-    }
-
 }

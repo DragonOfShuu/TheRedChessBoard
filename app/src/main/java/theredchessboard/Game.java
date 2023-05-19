@@ -8,13 +8,13 @@ public class Game {
     private Tile selectedTile;
     private boolean isFpTurn = true;
 
-    public Game(int count, int size, int padding, int numOfPieces, char[][] default_board, String theme) {
-        board = new Board(count, size, padding, numOfPieces, default_board, theme, this);
+    public Game(int count, int size, int padding, int numOfPieces, char[][] default_board, String theme1, String theme2) {
+        board = new Board(count, size, padding, numOfPieces, default_board, theme1, theme2, this);
         spLeft = fpLeft = numOfPieces/2;
     }
 
-    public Game(String theme) {
-        board = new Board(theme, this);
+    public Game(String theme1, String theme2) {
+        board = new Board(theme1, theme2, this);
         spLeft = fpLeft = board.getNumOfPieces() / 2;
     }
 

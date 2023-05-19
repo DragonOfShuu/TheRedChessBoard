@@ -4,21 +4,23 @@ import theredchessboard.Board;
 public abstract class AbstractPiece {
     protected boolean isFp;
     protected Board board;
-    protected String theme;
+    protected String theme1;
+    protected String theme2;
 
     protected int x;
     protected int y;
 
     public AbstractPiece(Board board, int x, int y) {
         this.board = board;
-        this.theme = board.getTheme();
+        this.theme1 = board.getTheme1();
+        this.theme2 = board.getTheme2();
         this.x = x;
         this.y = y;
     }
 
     public String getImageName() {
-        String playerName = (isFp ? "first_player" : "second_player");
-        return "themes/" + theme + "/" + playerName + "/" + this.pieceName() + ".png";
+        String theme = (isFp ? theme1 : theme2);
+        return "themes/" + theme + "/" + this.pieceName() + ".png";
     }
 
     public void setFp(boolean isFp) {

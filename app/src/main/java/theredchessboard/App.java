@@ -35,5 +35,6 @@ public class App {
 
     public static void main(String[] args) {
         DialogueBox dialog = new DialogueBox((playerOneSkin, playerTwoSkin) -> startChessBoard(playerOneSkin, playerTwoSkin));
+        dialog.repaint();
     }
 }

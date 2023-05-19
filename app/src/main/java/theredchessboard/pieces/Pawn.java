@@ -18,6 +18,10 @@ public class Pawn extends AbstractPiece {
             if (isFp){
                 if (!hasPawnMoved){
                     if (y == (this.y - 2)){
+                        if (map[this.y-2][x].getPiece() == null){
+                            hasPawnMoved = true;
+                            return true;
+                        }
                         if (this.isFp != map[this.y-2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
@@ -25,7 +29,11 @@ public class Pawn extends AbstractPiece {
                         else return false;
                     }
                     if (y == (this.y - 1)){
-                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
+                        if (map[this.y-1][x].getPiece() == null){
+                            hasPawnMoved = true;
+                            return true;
+                        }
+                        if (this.isFp != map[this.y-1][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -35,7 +43,11 @@ public class Pawn extends AbstractPiece {
                 }
                 else {
                     if (y == (this.y - 1)){
-                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
+                        if (map[this.y-1][x].getPiece() == null){
+                            hasPawnMoved = true;
+                            return true;
+                        }
+                        if (this.isFp != map[this.y-1][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -47,14 +59,22 @@ public class Pawn extends AbstractPiece {
             if (!isFp){
                 if(!hasPawnMoved){
                     if (y == (this.y + 2)){
-                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
+                        if (map[this.y+2][x].getPiece() == null){
+                            hasPawnMoved = true;
+                            return true;
+                        }
+                        if (this.isFp != map[this.y+2][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
                         else return false;
                     }
                     if (y == (this.y + 1)){
-                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
+                        if (map[this.y+1][x].getPiece() == null){
+                            hasPawnMoved = true;
+                            return true;
+                        }
+                        if (this.isFp != map[this.y+1][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }
@@ -65,7 +85,11 @@ public class Pawn extends AbstractPiece {
                 }
                 if(hasPawnMoved){
                     if (y == (this.y + 1)){
-                        if (this.isFp != map[this.y-2][x].getPiece().isFp()){
+                        if (map[this.y+1][x].getPiece() == null){
+                            hasPawnMoved = true;
+                            return true;
+                        }
+                        if (this.isFp != map[this.y+1][x].getPiece().isFp()){
                             hasPawnMoved = true;
                             return true;
                         }

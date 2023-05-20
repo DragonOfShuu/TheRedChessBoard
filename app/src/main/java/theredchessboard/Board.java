@@ -63,7 +63,7 @@ public class Board extends JFrame {
         createWindows(size, size, count, count, padding);
         setBoard();
 
-        this.setPreferredSize(new Dimension(size, size+55));
+        this.setPreferredSize(new Dimension(size+10, size+65));
         this.pack();
     }
 
@@ -109,7 +109,7 @@ public class Board extends JFrame {
         }
 
         ForfeitButton fButton = new ForfeitButton(this.game);
-        fButton.setBounds(10, (countY*height)+(countY*padding) + 10, 50, 20);
+        fButton.setBounds(10, (countY*height)+(countY*padding) + 10, 80, 20);
         this.add(fButton);
     }
 

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.io.File;
-import java.net.URL;
+// import java.io.File;
+// import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -59,24 +59,37 @@ public class DialogueBox extends JFrame implements ActionListener {
         // String path = "app/src/main/resources/themes/";
         // // path to the folder "themes"
 
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        URL url = loader.getResource("themes");
-        String path = url.getPath();
+        // UNFORTUNATELY LOOKING THROUGH DIRECTORIES
+        // ISN'T VERY EASY INSIDE OF A JAR FILE.
+        // THESE VALUES WILL HAVE TO BE HARD CODED
+        // INSTEAD.
+        // ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        // URL url = loader.getResource("themes");
+        // String path = url.getPath();
         
-        File directory = new File(path);
-        System.out.println(directory);
-        File[] folders = directory.listFiles(); //unfortunately I have to use type File[]. No shortcuts here
+        // File directory = new File(path);
+        // System.out.println(directory);
+        // File[] folders = directory.listFiles(); //unfortunately I have to use type File[]. No shortcuts here
 
-        for (File x : folders) {
-            System.out.println(x.toString());
-        }
-        if(folders != null){
-            for(File x : folders){
-                themes.add(x.getName());
-            }
-        }
+        // if(folders != null){
+        //     for(File x : folders){
+        //         themes.add(x.getName());
+        //     }
+        // }
         // adds the folder names from directory into arraylist "themes"
+        
+        String[] themeables = {
+            "among_us_blue",
+            "among_us_orange",
+            "among_us_pink",
+            "among_us_red",
+            "gay",
+            "straight"
+        };
 
+        for (String i : themeables) {
+            themes.add(i);
+        }
         
         buttonLayout(windowBounds);
         // creates the buttons and layout of the GUI

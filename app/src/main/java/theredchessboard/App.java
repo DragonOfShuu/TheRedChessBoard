@@ -16,7 +16,9 @@ public class App {
 
     public static void startChessBoard(String playerOneSkin, String playerTwoSkin) {
         try {
-            new Game(playerOneSkin, playerTwoSkin).start();
+            Game game = new Game(playerOneSkin, playerTwoSkin);
+            game.start();
+            
             dialogueBox.dispose();
         } catch (Exception e) {
             e.printStackTrace();

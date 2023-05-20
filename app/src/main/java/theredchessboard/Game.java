@@ -22,12 +22,18 @@ public class Game {
         board.start();
     }
 
-    public boolean deselectCurrentTile() {
+    private boolean deselectCurrentTile() {
         if (selectedTile == null) return false;
 
         selectedTile.deselect();
         selectedTile = null;
         return true;
+    }
+
+    private void selectTile(Tile tile) {
+        deselectCurrentTile();
+        selectedTile = tile;
+        selectedTile.select();
     }
 
     public void movePiece(Tile moveTo) {
@@ -38,7 +44,18 @@ public class Game {
     }
 
     public void takePiece(Tile moveTo) {
-        System.out.println("Take piece attempted");
+        if (isFpTurn) spLeft--; 
+        else          fpLeft--;
+
+        moveTo.setPiece(selectedTile.getPiece());
+        moveTo.getPiece().setLocation(moveTo.getLocX(), moveTo.getLocY());
+        selectedTile.setPiece(null);
+
+        if (spLeft==0 || fpLeft==0) {
+            System.out.println((spLeft==0 ? "First player" : "Second player") + " won the game!");
+        }
+
+        isFpTurn = !isFpTurn;
     }
 
     public void tileClicked(int x, int y) {
@@ -48,15 +65,11 @@ public class Game {
         if (selectedTile == null && tile.isEmpty()) return;
         if (selectedTile == null && tile.getPiece().isFp() != isFpTurn) return;
 
-        if (selectedTile == null) {
-            selectedTile = tile;
-            selectedTile.select();
-            return;
-        }
+        if (selectedTile == null) { this.selectTile(tile); return; }
 
         // SELECTED TILE IS NOT NULL
         if (selectedTile == tile) {deselectCurrentTile(); return;}
-        if (!tile.isEmpty() && isFpTurn == tile.getPiece().isFp()) return;
+        if (!tile.isEmpty() && isFpTurn == tile.getPiece().isFp()) { selectTile(tile); return; }
 
         // Check if the piece can move into position
         if (!selectedTile.getPiece().pieceCanMove(x, y)) return;

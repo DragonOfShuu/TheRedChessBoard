@@ -12,23 +12,10 @@ public class King extends AbstractPiece {
         Tile[][] map = this.board.getBoard();
 
         if (Math.abs(this.x-x)!=1 && Math.abs(this.y-y)!=1) return false;
-        if (Math.abs(this.x-x)!=1 || Math.abs(this.y-y)!=1) return false;
+        if (Math.abs(this.x-x)>1 || Math.abs(this.y-y)>1) return false;
         if (map[y][x].getPiece() == null) return true;
         if (this.isFp != map[y][x].getPiece().isFp()) return true;
         else return false;
-
-        // if (this.x == x && this.y == y) return false;
-        // if(Math.abs(this.x-x)==1 || Math.abs(this.y-y)==1){
-        //     if (this.isFp != map[y][x].getPiece().isFp()) return true;
-        //     else return false;
-        // }
-        // if(Math.abs(this.x-x)==1 && Math.abs(this.y-y)==1){
-        //     if (this.isFp != map[y][x].getPiece().isFp()) return true;
-        //     else return false;
-        // }
-        // else{
-        //     return false;
-        // }
     }
 
     @Override

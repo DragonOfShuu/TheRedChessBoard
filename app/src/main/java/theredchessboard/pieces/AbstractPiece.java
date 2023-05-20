@@ -1,4 +1,5 @@
 package theredchessboard.pieces;
+
 import theredchessboard.Board;
 
 public abstract class AbstractPiece {
@@ -35,14 +36,70 @@ public abstract class AbstractPiece {
         this.x = x;
         this.y = y;
     }
+    
+    /**
+     * Check all pieces from us
+     * to the x (excludes the 
+     * piece at x)
+     * @param x the x of the tile to check up to
+     * @return true if possible
+     */
+    protected boolean checkHorizontal(int x) {
+        int directionFactor = (this.x - x > 0 ? 1 : -1);
+        int diff = Math.abs(this.x - x);
+
+        for (int i = 1; i < diff; i++) {
+            if (!board.getTile(x+(i*directionFactor), this.y).isEmpty()) return false;
+        }
+
+        return true;
+    }
 
     /**
-     * Kills the current piece and
-     * relays to Board. Assume that
-     * the tile will now be empty
+     * Check all pieces from us
+     * to the y (excludes the
+     * piece at y)
+     * @param y the y of the tile to check up to
+     * @return true if possible
      */
-    public void kill() {
+    protected boolean checkVertical(int y) {
+        int directionFactor = (this.y - y > 0 ? 1 : -1);
+        int diff = Math.abs(this.y - y);
 
+        for (int i = 1; i < diff; i++) {
+            if (!board.getTile(this.x, y+(i*directionFactor)).isEmpty()) return false;
+        }
+
+        return true;
+    }
+
+    protected boolean checkDiagonal(int x, int y) {
+        if (Math.abs(this.x - x) != Math.abs(this.y - y)) return false;
+
+        // // I chose these arbitary 
+        // // operations to make it like 
+        // // math and quadrants.
+        int relativeX = x - this.x;
+        int relativeY = this.y - y;
+
+        int dirFactorX = (relativeX > 0 ? 1 : -1);
+        int dirFactorY = (relativeY > 0 ? 1 : -1);
+
+        int diff = Math.abs(this.y - y);
+
+        for (int i = 1; i < diff; i++) {
+            if (
+                !board.getTile(
+                    this.x+(i*dirFactorX), 
+                    // Inverted here because down is positive for y
+                    this.y-(i*dirFactorY)
+                ).isEmpty()
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

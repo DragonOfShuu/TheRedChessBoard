@@ -34,7 +34,7 @@ public class Tile extends ClickableBackgroundImage {
     }
 
     private static Color determineColor(int x, int y) {
-        return ((x+y) % 2) == 0 ? Color.lightGray : Color.white;
+        return ((x+y) % 2) == 0 ? Color.lightGray : Color.decode("#eeeeee");
     }
 
     public boolean isEmpty() {

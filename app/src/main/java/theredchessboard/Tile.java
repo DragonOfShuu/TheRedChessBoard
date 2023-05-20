@@ -50,7 +50,7 @@ public class Tile extends ClickableBackgroundImage {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         game.tileClicked(x, y);
     }
 

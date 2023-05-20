@@ -11,6 +11,7 @@ import theredchessboard.pieces.Knight;
 import theredchessboard.pieces.Pawn;
 import theredchessboard.pieces.Queen;
 import theredchessboard.pieces.Rook;
+import theredchessboard.widgets.ForfeitButton;
 
 public class Board extends JFrame {
     private int numOfPieces;
@@ -62,7 +63,7 @@ public class Board extends JFrame {
         createWindows(size, size, count, count, padding);
         setBoard();
 
-        this.setPreferredSize(new Dimension(size+20, size+40));
+        this.setPreferredSize(new Dimension(size, size+55));
         this.pack();
     }
 
@@ -106,6 +107,10 @@ public class Board extends JFrame {
                 board[y][x] = manipulatable;
             }
         }
+
+        ForfeitButton fButton = new ForfeitButton(this.game);
+        fButton.setBounds(10, (countY*height)+(countY*padding) + 10, 50, 20);
+        this.add(fButton);
     }
 
     private AbstractPiece solvePiece(int x, int y) {
@@ -123,15 +128,14 @@ public class Board extends JFrame {
     }
 
     public void setBoard() {
-        System.out.println(board.length);
         int count = 0;
         for (int row = 0; row < board.length; row++) {
-            for (int column = 0; column < board.length; column++) {
+            for (int column = 0; column < board[row].length; column++) {
                 AbstractPiece newPiece = solvePiece(column, row);
 
                 if (newPiece == null) {
                     board[row][column].setPiece( null );
-                    break;
+                    continue;
                 }
 
                 count++;

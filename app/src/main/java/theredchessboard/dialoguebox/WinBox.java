@@ -1,15 +1,14 @@
 package theredchessboard.dialoguebox;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 
+public class WinBox {
+    private int result;
 
-
-public class WinBox extends JDialog{
     public WinBox(int playerWinner, JFrame frame){
-        super(frame);
-        // super declaration
+        // super(frame);
+        // // super declaration
 
 
         Object[] customButtons = {"Play Again?", "Exit"};   // titles for buttons
@@ -22,11 +21,11 @@ public class WinBox extends JDialog{
             null,                                           // custom icon
             customButtons,                                  // button text input  
             customButtons[0]);                              // honestly not sure what this does, probably declares what title goes first?
-        
-        if(n == 0){
-            // code for playing again
-            System.out.println("print for testing");
-            // code for playing again
-        }
+
+        result = n;
+    }
+
+    public int getResult() {
+        return result;
     }
 }

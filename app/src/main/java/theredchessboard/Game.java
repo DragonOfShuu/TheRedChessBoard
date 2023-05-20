@@ -1,5 +1,9 @@
 package theredchessboard;
 
+import javax.swing.JFrame;
+
+import theredchessboard.dialoguebox.WinBox;
+
 public class Game {
     public int fpLeft;
     public int spLeft;
@@ -18,8 +22,30 @@ public class Game {
         spLeft = fpLeft = board.getNumOfPieces() / 2;
     }
 
+    public void beginWinSequence() {
+        JFrame winBox = new JFrame();
+        int x = new WinBox((isFpTurn ? 1 : 2), winBox).getResult();
+        winBox.dispose();
+
+        if (x == 1) { board.dispose(); return; }
+
+        reset();
+    }
+
     public void start() {
         board.start();
+    }
+
+    public void reset() {
+        board.setBoard();
+        board.repaint();
+        spLeft = fpLeft = board.getNumOfPieces() / 2;
+        isFpTurn = true;
+    }
+
+    public void forfeit() {
+        isFpTurn = !isFpTurn;
+        beginWinSequence();
     }
 
     private boolean deselectCurrentTile() {
@@ -50,9 +76,10 @@ public class Game {
         moveTo.setPiece(selectedTile.getPiece());
         moveTo.getPiece().setLocation(moveTo.getLocX(), moveTo.getLocY());
         selectedTile.setPiece(null);
-
+        
         if (spLeft==0 || fpLeft==0) {
-            System.out.println((spLeft==0 ? "First player" : "Second player") + " won the game!");
+            beginWinSequence();
+            return;
         }
 
         isFpTurn = !isFpTurn;

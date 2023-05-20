@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.File;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -54,8 +55,12 @@ public class DialogueBox extends JFrame implements ActionListener {
         // Text JLabel
 
 
-        String path = "app/src/main/resources/themes/";
-        // path to the folder "themes"
+        // String path = "app/src/main/resources/themes/";
+        // // path to the folder "themes"
+
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        URL url = loader.getResource("themes");
+        String path = url.getPath();
 
 
         File directory = new File(path);

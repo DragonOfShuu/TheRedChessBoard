@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
 }
 
 repositories {
@@ -34,8 +35,17 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.named('jar') {
+jar {
   manifest {
    attributes 'Main-Class': 'theredchessboard.App'
   }
+
+  into 'resources', {
+   from 'resources'
+  }
+}
+
+task('generateResources', dependsOn: 'classes', type: JavaExec) {
+    main = 'theredchessboard.BuildResources'
+    classpath = sourceSets.main.runtimeClasspath
 }

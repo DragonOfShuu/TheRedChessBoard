@@ -1,6 +1,7 @@
 package theredchessboard.dialoguebox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import javax.swing.JButton;
 import java.util.ArrayList;
 import java.awt.Font;
@@ -61,10 +62,14 @@ public class DialogueBox extends JFrame implements ActionListener {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         URL url = loader.getResource("themes");
         String path = url.getPath();
-
-
+        
         File directory = new File(path);
+        System.out.println(directory);
         File[] folders = directory.listFiles(); //unfortunately I have to use type File[]. No shortcuts here
+
+        for (File x : folders) {
+            System.out.println(x.toString());
+        }
         if(folders != null){
             for(File x : folders){
                 themes.add(x.getName());

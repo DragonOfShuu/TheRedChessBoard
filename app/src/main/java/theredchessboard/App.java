@@ -14,6 +14,16 @@ public class App {
         return "Hello World!";
     }
 
+    /**
+     * Runs after the themes
+     * are selected
+     * @param playerOneSkin The
+     * name of the theme for 
+     * player one
+     * @param playerTwoSkin The
+     * name of the theme for 
+     * player two
+     */
     public static void startChessBoard(String playerOneSkin, String playerTwoSkin) {
         try {
             Game game = new Game(playerOneSkin, playerTwoSkin);

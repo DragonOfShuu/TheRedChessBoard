@@ -19,19 +19,38 @@ public abstract class AbstractPiece {
         this.y = y;
     }
 
+    /**
+     * @return The url to the 
+     * image
+     */
     public String getImageName() {
         String theme = (isFp ? theme1 : theme2);
         return "themes/" + theme + "/" + this.pieceName() + ".png";
     }
 
+    /**
+     * Set if this piece
+     * is first player.
+     * @param isFp True if this piece is 
+     * first player
+     */
     public void setFp(boolean isFp) {
         this.isFp = isFp;
     }
 
+    /**
+     * @return If this piece is first
+     * player
+     */
     public boolean isFp() {
         return isFp;
     }
 
+    /**
+     * The location of this piece
+     * @param x
+     * @param y
+     */
     public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;

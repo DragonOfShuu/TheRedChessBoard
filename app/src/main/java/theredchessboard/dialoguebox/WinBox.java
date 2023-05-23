@@ -6,6 +6,16 @@ import javax.swing.JFrame;
 public class WinBox {
     private int result;
 
+    /**
+     * Displayed when a player
+     * has won the game
+     * @param playerWinner The
+     * integer index (not zero
+     * based) of the winning
+     * player
+     * @param frame The frame
+     * to display with
+     */
     public WinBox(int playerWinner, JFrame frame){
         // super(frame);
         // // super declaration
@@ -25,6 +35,12 @@ public class WinBox {
         result = n;
     }
 
+    /**
+     * @return The result
+     * from this dialog
+     * (0 means play again,
+     * 1 means quit)
+     */
     public int getResult() {
         return result;
     }
